@@ -1,12 +1,7 @@
 package com.jasperReportGenerator.config;
 
-import com.itextpdf.kernel.pdf.EncryptionConstants;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfReader;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.WriterProperties;
+import com.itextpdf.kernel.pdf.*;
 import com.jasperReportGenerator.dto.JasperReportDto;
-import com.jasperReportGenerator.dto.JasperReportMultiValueParamDto;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Objects;
+
 
 /**
  * @author Anand Jambhale
@@ -68,6 +64,7 @@ public class JasperServerClient {
                 new File(jasperReportDto.getReportOutputFolder()).mkdirs();
                 final File outputFile=new File(jasperReportDto.getReportOutputFolder()+File.separator+new File(jasperReportDto.getReportUri()+dot+jasperReportDto.getFileFormat()).getName());
                 Files.copy(new ByteArrayInputStream(Objects.requireNonNull(responseEntity.getBody())),outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                encryptPdf(outputFile);
                 return "File downloaded successfully to path "+outputFile.getAbsolutePath();
             }
             throw new Throwable("File downloading error");
@@ -75,6 +72,30 @@ public class JasperServerClient {
             throwable.printStackTrace();
             throw throwable;
         }
+    }
+
+    /**
+     * To encrypt the pdf
+     * @param inputFile
+     * @throws IOException
+     */
+    public void encryptPdf(File inputFile) throws IOException {
+        // Set the user and owner passwords
+        String userPassword = "jasper123"; // User password (to open the PDF)
+        String ownerPassword = "jasper123"; // Owner password (to change permissions)
+        File outputFile=new File(inputFile.getParent()+File.separator+"_encrypted_"+inputFile.getName());
+        PdfReader pdfReader = new PdfReader(inputFile);
+        PdfWriter pdfWriter = new PdfWriter(outputFile.getAbsolutePath(),
+                new WriterProperties().setStandardEncryption(userPassword.getBytes(),
+                        ownerPassword.getBytes(), EncryptionConstants.ALLOW_PRINTING,
+                        EncryptionConstants.ENCRYPTION_AES_256));
+        // Create a PdfDocument instance
+        PdfDocument pdfDocument = new PdfDocument(pdfReader, pdfWriter);
+        // Close the PdfDocument to save changes
+        pdfDocument.close();
+        pdfWriter.flush();
+        pdfWriter.close();
+        System.out.println("Pdf encrypted");
     }
 
 
