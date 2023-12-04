@@ -1,4 +1,4 @@
-package com.jasperReportGenerator.config;
+package com.jasperReportGenerator.bean;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
