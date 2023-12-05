@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -20,7 +21,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.Objects;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 
 /**
@@ -32,6 +36,8 @@ import java.util.Objects;
 public class JasperServerClient {
     @Value ("${jasper.server.url}")
     private String serverUrl;
+    @Value ("${jasper.server.base-path}")
+    private String reportOutputBasePath;
     @Value ("${jasper.server.username}")
     private String username;
     @Value ("${jasper.server.password}")
@@ -61,11 +67,14 @@ public class JasperServerClient {
         try{
             ResponseEntity<byte[]> responseEntity= restTemplate.exchange(uriComponentsBuilder.toUriString(), HttpMethod.GET,null, byte[].class);
             if(responseEntity.getStatusCode()== HttpStatus.OK){
-                new File(jasperReportDto.getReportOutputFolder()).mkdirs();
-                final File outputFile=new File(jasperReportDto.getReportOutputFolder()+File.separator+new File(jasperReportDto.getReportUri()+dot+jasperReportDto.getFileFormat()).getName());
-                Files.copy(new ByteArrayInputStream(Objects.requireNonNull(responseEntity.getBody())),outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                encryptPdf(outputFile);
-                return "File downloaded successfully to path "+outputFile.getAbsolutePath();
+                new File(reportOutputBasePath).mkdirs();
+                final File outputFile=new File(reportOutputBasePath+File.separator+new File(jasperReportDto.getReportUri()+dot+jasperReportDto.getFileFormat()).getName());
+                final OutputStream outputStream=new FileOutputStream(outputFile);
+                StreamUtils.copy(new ByteArrayInputStream(Objects.requireNonNull(responseEntity.getBody())),outputStream);
+                outputStream.flush();
+                outputStream.close();
+                System.out.println(outputFile.getAbsolutePath());
+                return "File downloaded successfully to path -> "+outputFile.getAbsolutePath();
             }
             throw new Throwable("File downloading error");
         }catch (Throwable throwable){
@@ -75,11 +84,39 @@ public class JasperServerClient {
     }
 
     /**
+     * Jasper report api call by java.net package
+     * @param jasperReportDto
+     * @return
+     * @throws Throwable
+     */
+    @GraphQLQuery (name = "getReportBySimple")
+    public String downloadReportBySimpleApiCall(JasperReportDto jasperReportDto) throws Throwable {
+        final StringBuilder baseURL=new StringBuilder(serverUrl);
+        UriComponentsBuilder uriComponentsBuilder=UriComponentsBuilder.fromUriString(baseURL.append(jasperReportDto.getReportUri()).append(dot).append(jasperReportDto.getFileFormat()).toString())
+                .queryParam(reportLocale,(jasperReportDto.getLocaleName()==null || jasperReportDto.getLocaleName().isBlank() ? defaultLocale : jasperReportDto.getLocaleName()));
+        String base64 = Base64.getEncoder().encodeToString((username + ":" + password).getBytes(UTF_8));
+        final HttpURLConnection httpURLConnection= (HttpURLConnection) new URL(uriComponentsBuilder.toUriString()).openConnection();
+        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setRequestProperty("Authorization", "Basic "+base64);
+        httpURLConnection.connect();
+        if(httpURLConnection.getResponseCode()==HttpURLConnection.HTTP_OK){
+            new File(reportOutputBasePath).mkdirs();
+            final File outputFile=new File(reportOutputBasePath+File.separator+new File(jasperReportDto.getReportUri()+dot+jasperReportDto.getFileFormat()).getName());
+            final OutputStream outputStream=new FileOutputStream(outputFile);
+            Files.copy(httpURLConnection.getInputStream(),outputFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+            outputStream.flush();
+            outputStream.close();
+            return outputFile.getAbsolutePath();
+        }else
+            throw new Throwable("Error while calling the api "+httpURLConnection.getResponseCode());
+    }
+
+    /**
      * To encrypt the pdf
      * @param inputFile
      * @throws IOException
      */
-    public void encryptPdf(File inputFile) throws IOException {
+    public static void encryptPdf(File inputFile) throws IOException {
         // Set the user and owner passwords
         String userPassword = "jasper123"; // User password (to open the PDF)
         String ownerPassword = "jasper123"; // Owner password (to change permissions)
