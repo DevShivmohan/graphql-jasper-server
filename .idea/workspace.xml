@@ -10,7 +10,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/JasperServerClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/JasperServerClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/bean/Beans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/bean/Beans.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/FileSystemProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/FileSystemProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/JasperServerConfigProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/JasperServerConfigProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/service/impl/DownloadReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/service/impl/DownloadReportServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +27,32 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -33,13 +63,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/shiv/Samta deck/iDigi-deck/notification/graphql-spqr-jasper-server"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/shiv/Samta deck/iDigi-deck/notification/graphql-spqr-jasper-server&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.JasperApplication">
     <configuration name="JasperApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.jasperReportGenerator.JasperApplication" />
@@ -47,6 +77,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.jasperReportGenerator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JasperReportApiQueryResolver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jasperReportGenerator.endpoint.JasperReportApiQueryResolver" />
+      <module name="jasperReport.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jasperReportGenerator.endpoint.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -69,6 +112,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JasperReportApiQueryResolver" />
         <item itemvalue="Application.JasperApplication" />
       </list>
     </recent_temporary>

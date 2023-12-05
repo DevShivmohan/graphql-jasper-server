@@ -3,7 +3,6 @@ package com.jasperReportGenerator.bean;
 import com.jasperReportGenerator.config.FileSystemProperties;
 import com.jasperReportGenerator.config.JasperServerConfigProperties;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +29,7 @@ public class Beans {
 
     @PostConstruct
     public void createReportRootDirectory() throws Throwable {
-        final File file=new File(jasperServerConfigProperties.getBasePath()+File.separator+fileSystemProperties.getRootDirectoryName());
+        final File file=new File(fileSystemProperties.getBasePath()+File.separator+fileSystemProperties.getRootReportDirectoryName());
         if(!file.exists() && !file.mkdirs())
             throw new Throwable("Root directory creation error");
     }

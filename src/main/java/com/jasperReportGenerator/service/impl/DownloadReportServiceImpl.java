@@ -1,7 +1,6 @@
 package com.jasperReportGenerator.service.impl;
 
 import com.jasperReportGenerator.config.FileSystemProperties;
-import com.jasperReportGenerator.config.JasperServerConfigProperties;
 import com.jasperReportGenerator.constants.ApiConstants;
 import com.jasperReportGenerator.service.DownloadReportService;
 import lombok.AllArgsConstructor;
@@ -14,14 +13,13 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
 @Service
-@EnableConfigurationProperties({JasperServerConfigProperties.class, FileSystemProperties.class})
+@EnableConfigurationProperties(FileSystemProperties.class)
 @AllArgsConstructor
 public class DownloadReportServiceImpl implements DownloadReportService {
     private final FileSystemProperties fileSystemProperties;
-    private final JasperServerConfigProperties jasperServerConfigProperties;
     @Override
     public File downloadReportIntoFileSystem(InputStream inputStream, String reportName, String reportFormat) throws Throwable {
-        final File outputBasePath = new File(jasperServerConfigProperties.getBasePath() + File.separator + fileSystemProperties.getRootDirectoryName() + File.separator + reportFormat);
+        final File outputBasePath = new File(fileSystemProperties.getBasePath() + File.separator + fileSystemProperties.getRootReportDirectoryName() + File.separator + reportFormat);
         if (!outputBasePath.exists() && !outputBasePath.mkdirs())
             throw new Throwable("Directory creation error " + reportFormat);
         final String reportNameFilterIfSubPath=reportName.substring(reportName.lastIndexOf(ApiConstants.FORWARD_SLASH)!=-1 ? reportName.lastIndexOf(ApiConstants.FORWARD_SLASH)+1 : 0);

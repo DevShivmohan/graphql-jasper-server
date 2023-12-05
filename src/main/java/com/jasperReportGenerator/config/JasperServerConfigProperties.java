@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "jasper.server")
 public class JasperServerConfigProperties {
     private String url;
-    private String basePath;
     private String username;
     private String password;
     private String defaultLocale;
