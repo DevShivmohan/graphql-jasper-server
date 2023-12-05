@@ -13,11 +13,6 @@
   ],
   "properties": [
     {
-      "name": "jasper.server.base-path",
-      "type": "java.lang.String",
-      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
-    },
-    {
       "name": "jasper.server.default-locale",
       "type": "java.lang.String",
       "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
@@ -38,7 +33,12 @@
       "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
     },
     {
-      "name": "report.file-system.root-directory-name",
+      "name": "report.file-system.base-path",
+      "type": "java.lang.String",
+      "sourceType": "com.jasperReportGenerator.config.FileSystemProperties"
+    },
+    {
+      "name": "report.file-system.root-report-directory-name",
       "type": "java.lang.String",
       "sourceType": "com.jasperReportGenerator.config.FileSystemProperties"
     }

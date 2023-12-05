@@ -26,8 +26,8 @@ public class JasperReportApiQueryResolver {
      * @return
      * @throws Throwable
      */
-    @GraphQLQuery(name = "getReport")
-    public String downloadReport(JasperReportDto jasperReportDto) throws Throwable {
+    @GraphQLQuery(name = "fetchReportFromReportServer")
+    public String fetchReportFromReportServer(JasperReportDto jasperReportDto) throws Throwable {
         final StringBuilder baseURL = new StringBuilder(jasperServerConfigProperties.getUrl());
         final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(baseURL.append(jasperReportDto.getReportUri()).append(ApiConstants.DOT).append(jasperReportDto.getFileFormat()).toString())
                 .queryParam(ApiConstants.REPORT_LOCALE, (jasperReportDto.getLocaleName() == null || jasperReportDto.getLocaleName().isBlank() ? jasperServerConfigProperties.getDefaultLocale() : jasperReportDto.getLocaleName()));
