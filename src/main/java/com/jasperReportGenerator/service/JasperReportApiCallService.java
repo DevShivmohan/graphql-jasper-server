@@ -14,15 +14,29 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.Objects;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Service
 @GraphQLApi
 public class JasperReportApiCallService {
     @Value ("${jasper.server.url}")
     private String serverUrl;
+    @Value ("${jasper.server.base-path}")
+    private String reportOutputBasePath;
+    @Value ("${jasper.server.username}")
+    private String username;
+    @Value ("${jasper.server.password}")
+    private String password;
     @Value ("${jasper.server.locale}")
     private String reportLocale;
     @Value ("${jasper.server.dot}")
@@ -60,6 +74,34 @@ public class JasperReportApiCallService {
             throwable.printStackTrace();
             throw throwable;
         }
+    }
+
+    /**
+     * Jasper report api call by java.net package
+     * @param jasperReportDto
+     * @return
+     * @throws Throwable
+     */
+    @GraphQLQuery (name = "getReportBySimple")
+    public String downloadReportBySimpleApiCall(JasperReportDto jasperReportDto) throws Throwable {
+        final StringBuilder baseURL=new StringBuilder(serverUrl);
+        final URI uri=new URI(baseURL.append(jasperReportDto.getReportUri()).append(dot).append(jasperReportDto.getFileFormat()).append("?").append(reportLocale).append("=")
+                .append((jasperReportDto.getLocaleName()==null || jasperReportDto.getLocaleName().isBlank() ? defaultLocale : jasperReportDto.getLocaleName())).toString());
+        String base64 = Base64.getEncoder().encodeToString((username + ":" + password).getBytes(UTF_8));
+        final HttpURLConnection httpURLConnection= (HttpURLConnection) new URL(uri.toString()).openConnection();
+        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setRequestProperty("Authorization", "Basic "+base64);
+        httpURLConnection.connect();
+        if(httpURLConnection.getResponseCode()==HttpURLConnection.HTTP_OK){
+            new File(reportOutputBasePath).mkdirs();
+            final File outputFile=new File(reportOutputBasePath+File.separator+new File(jasperReportDto.getReportUri()+dot+jasperReportDto.getFileFormat()).getName());
+            final OutputStream outputStream=new FileOutputStream(outputFile);
+            Files.copy(httpURLConnection.getInputStream(),outputFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+            outputStream.flush();
+            outputStream.close();
+            return outputFile.getAbsolutePath();
+        }else
+            throw new Throwable("Error while calling the api "+httpURLConnection.getResponseCode());
     }
 
 }
