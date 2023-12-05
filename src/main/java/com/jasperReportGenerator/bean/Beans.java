@@ -1,24 +1,37 @@
 package com.jasperReportGenerator.bean;
 
+import com.jasperReportGenerator.config.FileSystemProperties;
+import com.jasperReportGenerator.config.JasperServerConfigProperties;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-@Configuration
-public class Beans {
+import javax.annotation.PostConstruct;
+import java.io.File;
 
-    @Value("${jasper.server.username}")
-    private String username;
-    @Value ("${jasper.server.password}")
-    private String password;
+@Configuration
+@EnableConfigurationProperties({JasperServerConfigProperties.class, FileSystemProperties.class})
+@AllArgsConstructor
+public class Beans {
+    private final JasperServerConfigProperties jasperServerConfigProperties;
+    private final FileSystemProperties fileSystemProperties;
     @Bean
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new ByteArrayHttpMessageConverter());
-        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(username,password));
+        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(jasperServerConfigProperties.getUsername(), jasperServerConfigProperties.getPassword()));
         return restTemplate;
+    }
+
+    @PostConstruct
+    public void createReportRootDirectory() throws Throwable {
+        final File file=new File(jasperServerConfigProperties.getBasePath()+File.separator+fileSystemProperties.getRootDirectoryName());
+        if(!file.exists() && !file.mkdirs())
+            throw new Throwable("Root directory creation error");
     }
 }

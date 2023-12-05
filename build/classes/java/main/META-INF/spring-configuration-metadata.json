@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "name": "jasper.server",
+      "type": "com.jasperReportGenerator.config.JasperServerConfigProperties",
+      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+    },
+    {
+      "name": "report.file-system",
+      "type": "com.jasperReportGenerator.config.FileSystemProperties",
+      "sourceType": "com.jasperReportGenerator.config.FileSystemProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jasper.server.base-path",
+      "type": "java.lang.String",
+      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+    },
+    {
+      "name": "jasper.server.default-locale",
+      "type": "java.lang.String",
+      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+    },
+    {
+      "name": "jasper.server.password",
+      "type": "java.lang.String",
+      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+    },
+    {
+      "name": "jasper.server.url",
+      "type": "java.lang.String",
+      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+    },
+    {
+      "name": "jasper.server.username",
+      "type": "java.lang.String",
+      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+    },
+    {
+      "name": "report.file-system.root-directory-name",
+      "type": "java.lang.String",
+      "sourceType": "com.jasperReportGenerator.config.FileSystemProperties"
+    }
+  ],
+  "hints": []
+}
