@@ -8,12 +8,14 @@ import com.report.generator.service.JasperReportApiCallService;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @GraphQLApi
 @Service
 @AllArgsConstructor
+@EnableConfigurationProperties(JasperServerConfigProperties.class)
 public class JasperReportApiQueryResolver {
     private final JasperServerConfigProperties jasperServerConfigProperties;
     private final DownloadReportService downloadReportService;
