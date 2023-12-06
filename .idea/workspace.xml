@@ -12,7 +12,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/endpoint/JasperReportApiQueryResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/endpoint/JasperReportApiQueryResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/JasperApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/JasperApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/bean/Beans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/bean/Beans.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/FileSystemProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/config/FileSystemProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/config/JasperServerConfigProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/config/JasperServerConfigProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/constants/ApiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/constants/ApiConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/dto/JasperReportDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/dto/JasperReportDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/endpoint/JasperReportApiQueryResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/endpoint/JasperReportApiQueryResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/service/DownloadReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/DownloadReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/service/JasperReportApiCallService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/JasperReportApiCallService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/service/impl/DownloadReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/impl/DownloadReportServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jasperReportGenerator/service/impl/JasperReportApiCallServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/impl/JasperReportApiCallServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +78,7 @@
     &quot;last_opened_file_path&quot;: &quot;/home/shiv/Samta deck/iDigi-deck/notification/graphql-spqr-jasper-server&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.JasperApplication">
+  <component name="RunManager" selected="Application.com.report.generator.JasperApplication">
     <configuration name="JasperApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.jasperReportGenerator.JasperApplication" />
       <module name="jasperReport.main" />
@@ -107,8 +118,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="com.report.generator.JasperApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.report.generator.JasperApplication" />
+      <module name="jasperReport.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.report.generator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.report.generator.JasperApplication" />
         <item itemvalue="Application.JasperReportApiQueryResolver" />
         <item itemvalue="Application.JasperApplication" />
       </list>

@@ -2,45 +2,45 @@
   "groups": [
     {
       "name": "jasper.server",
-      "type": "com.jasperReportGenerator.config.JasperServerConfigProperties",
-      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+      "type": "com.report.generator.config.JasperServerConfigProperties",
+      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
     },
     {
       "name": "report.file-system",
-      "type": "com.jasperReportGenerator.config.FileSystemProperties",
-      "sourceType": "com.jasperReportGenerator.config.FileSystemProperties"
+      "type": "com.report.generator.config.FileSystemProperties",
+      "sourceType": "com.report.generator.config.FileSystemProperties"
     }
   ],
   "properties": [
     {
       "name": "jasper.server.default-locale",
       "type": "java.lang.String",
-      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
     },
     {
       "name": "jasper.server.password",
       "type": "java.lang.String",
-      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
     },
     {
       "name": "jasper.server.url",
       "type": "java.lang.String",
-      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
     },
     {
       "name": "jasper.server.username",
       "type": "java.lang.String",
-      "sourceType": "com.jasperReportGenerator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
     },
     {
       "name": "report.file-system.base-path",
       "type": "java.lang.String",
-      "sourceType": "com.jasperReportGenerator.config.FileSystemProperties"
+      "sourceType": "com.report.generator.config.FileSystemProperties"
     },
     {
       "name": "report.file-system.root-report-directory-name",
       "type": "java.lang.String",
-      "sourceType": "com.jasperReportGenerator.config.FileSystemProperties"
+      "sourceType": "com.report.generator.config.FileSystemProperties"
     }
   ],
   "hints": []
