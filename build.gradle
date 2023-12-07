@@ -28,7 +28,7 @@ dependencies {
 }
 
 springBoot {
-    mainClass = 'com.report.generator/JasperApplication'
+    mainClass = 'com.report.generator.JasperApplication'
 }
 
 compileJava {
