@@ -2,7 +2,9 @@ package com.report.generator.service.impl;
 
 import com.report.generator.config.FileSystemProperties;
 import com.report.generator.constants.ApiConstants;
+import com.report.generator.dto.JasperReportDto;
 import com.report.generator.service.DownloadReportService;
+import com.report.generator.service.ReportFileNameConfiguration;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -17,13 +19,16 @@ import java.nio.file.StandardCopyOption;
 @AllArgsConstructor
 public class DownloadReportServiceImpl implements DownloadReportService {
     private final FileSystemProperties fileSystemProperties;
+
     @Override
-    public File downloadReportIntoFileSystem(InputStream inputStream, String reportName, String reportFormat) throws Throwable {
-        final File outputBasePath = new File(fileSystemProperties.getBasePath() + File.separator + fileSystemProperties.getRootReportDirectoryName() + File.separator + reportFormat);
+    public File downloadReportIntoFileSystem(final InputStream inputStream, final ReportFileNameConfiguration reportFileNameConfiguration,final JasperReportDto jasperReportDto) throws Throwable {
+        final String configuredReportName= reportFileNameConfiguration.getConfiguredReportFileNameWithCustomConfiguration(jasperReportDto);
+        final File outputBasePath = new File(fileSystemProperties.getBasePath() + File.separator + fileSystemProperties.getRootReportDirectoryName() + File.separator
+                + configuredReportName
+                .substring(configuredReportName.indexOf(ApiConstants.DOT)+1));
         if (!outputBasePath.exists() && !outputBasePath.mkdirs())
-            throw new Throwable("Directory creation error " + reportFormat);
-        final String reportNameFilterIfSubPath=reportName.substring(reportName.lastIndexOf(ApiConstants.FORWARD_SLASH)!=-1 ? reportName.lastIndexOf(ApiConstants.FORWARD_SLASH)+1 : 0);
-        final File outputFile = new File(outputBasePath.getAbsolutePath() + File.separator + reportNameFilterIfSubPath + ApiConstants.UNDERSCORE + System.currentTimeMillis() + ApiConstants.DOT + reportFormat);
+            throw new Throwable("Directory creation error " + outputBasePath.getName());
+       final File outputFile = new File(outputBasePath.getAbsolutePath() + File.separator + configuredReportName);
         if((Files.copy(inputStream,outputFile.toPath(), StandardCopyOption.REPLACE_EXISTING))<=0)
             throw new Throwable("File copying error");
         inputStream.close();

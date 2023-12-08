@@ -31,6 +31,6 @@ public class Beans {
     public void createReportRootDirectory() throws Throwable {
         final File file=new File(fileSystemProperties.getBasePath()+File.separator+fileSystemProperties.getRootReportDirectoryName());
         if(!file.exists() && !file.mkdirs())
-            throw new Throwable("Root directory creation error");
+            throw new Throwable("Root directory creation error "+fileSystemProperties.getRootReportDirectoryName());
     }
 }
