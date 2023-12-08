@@ -2,45 +2,70 @@
   "groups": [
     {
       "name": "jasper.server",
-      "type": "com.report.generator.config.JasperServerConfigProperties",
-      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
+      "type": "com.report.generator.config.properties.JasperServerConfigProperties",
+      "sourceType": "com.report.generator.config.properties.JasperServerConfigProperties"
     },
     {
       "name": "report.file-system",
-      "type": "com.report.generator.config.FileSystemProperties",
-      "sourceType": "com.report.generator.config.FileSystemProperties"
+      "type": "com.report.generator.config.properties.FileSystemProperties",
+      "sourceType": "com.report.generator.config.properties.FileSystemProperties"
+    },
+    {
+      "name": "report.ftp",
+      "type": "com.report.generator.config.properties.FTPConfigProperties",
+      "sourceType": "com.report.generator.config.properties.FTPConfigProperties"
     }
   ],
   "properties": [
     {
       "name": "jasper.server.default-locale",
       "type": "java.lang.String",
-      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.properties.JasperServerConfigProperties"
     },
     {
       "name": "jasper.server.password",
       "type": "java.lang.String",
-      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.properties.JasperServerConfigProperties"
     },
     {
       "name": "jasper.server.url",
       "type": "java.lang.String",
-      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.properties.JasperServerConfigProperties"
     },
     {
       "name": "jasper.server.username",
       "type": "java.lang.String",
-      "sourceType": "com.report.generator.config.JasperServerConfigProperties"
+      "sourceType": "com.report.generator.config.properties.JasperServerConfigProperties"
     },
     {
       "name": "report.file-system.base-path",
       "type": "java.lang.String",
-      "sourceType": "com.report.generator.config.FileSystemProperties"
+      "sourceType": "com.report.generator.config.properties.FileSystemProperties"
     },
     {
       "name": "report.file-system.root-report-directory-name",
       "type": "java.lang.String",
-      "sourceType": "com.report.generator.config.FileSystemProperties"
+      "sourceType": "com.report.generator.config.properties.FileSystemProperties"
+    },
+    {
+      "name": "report.ftp.ip",
+      "type": "java.lang.String",
+      "sourceType": "com.report.generator.config.properties.FTPConfigProperties"
+    },
+    {
+      "name": "report.ftp.password",
+      "type": "java.lang.String",
+      "sourceType": "com.report.generator.config.properties.FTPConfigProperties"
+    },
+    {
+      "name": "report.ftp.port",
+      "type": "java.lang.Integer",
+      "sourceType": "com.report.generator.config.properties.FTPConfigProperties"
+    },
+    {
+      "name": "report.ftp.username",
+      "type": "java.lang.String",
+      "sourceType": "com.report.generator.config.properties.FTPConfigProperties"
     }
   ],
   "hints": []

@@ -1,6 +1,6 @@
 package com.report.generator.endpoint;
 
-import com.report.generator.config.JasperServerConfigProperties;
+import com.report.generator.config.properties.JasperServerConfigProperties;
 import com.report.generator.constants.ApiConstants;
 import com.report.generator.dto.JasperReportDto;
 import com.report.generator.service.DownloadReportService;

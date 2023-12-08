@@ -1,4 +1,4 @@
-package com.report.generator.config;
+package com.report.generator.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

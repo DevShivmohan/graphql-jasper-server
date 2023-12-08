@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2d1c0a1-8d5a-4cca-8a40-9937d637b844" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/ReportFileNameConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/config/properties/FTPConfigProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/FTPClientService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/impl/FTPClientServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
@@ -14,15 +18,24 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/JasperApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/JasperApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/bean/Beans.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/bean/Beans.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/config/FileSystemProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/config/JasperServerConfigProperties.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/endpoint/JasperReportApiQueryResolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/endpoint/JasperReportApiQueryResolver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/service/DownloadReportService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/service/DownloadReportService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/service/impl/DownloadReportServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/report/generator/service/impl/DownloadReportServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/report/generator/JasperApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/JasperApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/report/generator/bean/Beans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/bean/Beans.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/report/generator/config/FileSystemProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/config/properties/FileSystemProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/report/generator/config/JasperServerConfigProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/config/properties/JasperServerConfigProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/report/generator/endpoint/JasperReportApiQueryResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/endpoint/JasperReportApiQueryResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/report/generator/service/DownloadReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/DownloadReportService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/report/generator/service/impl/DownloadReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/report/generator/service/impl/DownloadReportServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
