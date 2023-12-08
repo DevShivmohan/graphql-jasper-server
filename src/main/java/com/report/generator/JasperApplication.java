@@ -1,6 +1,6 @@
 package com.report.generator;
 
-import org.apache.commons.net.ftp.FTPClient;
+import com.report.generator.service.FTPClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 @SpringBootApplication
 public class JasperApplication {
     @Autowired
-    private FTPClient ftpClient;
+    private FTPClientService ftpClientService;
 
     public static void main(String[] args) {
         SpringApplication.run(JasperApplication.class, args);
@@ -20,8 +20,8 @@ public class JasperApplication {
 
     @PostConstruct
     public void showAllDirectoriesAndFilesOverFTPServer() throws IOException {
-        Arrays.stream(ftpClient.listFiles("/jasper-reports/Reports/pdf")).forEach(System.out::println);
-        Arrays.stream(ftpClient.listFiles("/jasper-reports/Reports/xlsx")).forEach(System.out::println);
+        Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/pdf")).forEach(System.out::println);
+        Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/xlsx")).forEach(System.out::println);
     }
 
 }

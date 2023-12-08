@@ -3,6 +3,7 @@ package com.report.generator.service.impl;
 import com.report.generator.service.FTPClientService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,5 +21,10 @@ public class FTPClientServiceImpl implements FTPClientService {
     @Override
     public boolean makeDirectory(String pathname) throws IOException {
         return ftpClient.makeDirectory(pathname);
+    }
+
+    @Override
+    public FTPFile[] listFiles(String pathname) throws IOException {
+        return ftpClient.listFiles(pathname);
     }
 }
