@@ -22,6 +22,7 @@ public class JasperApplication {
     public void showAllDirectoriesAndFilesOverFTPServer() throws IOException {
         Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/pdf")).forEach(System.out::println);
         Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/xlsx")).forEach(System.out::println);
+        Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/html")).forEach(System.out::println);
     }
 
 }

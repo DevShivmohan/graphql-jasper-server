@@ -27,4 +27,17 @@ public class FTPClientServiceImpl implements FTPClientService {
     public FTPFile[] listFiles(String pathname) throws IOException {
         return ftpClient.listFiles(pathname);
     }
+
+    @Override
+    public byte[] retrieveFileBytesFromStream(String reportFile) throws Throwable {
+        try (final InputStream inputStream=ftpClient.retrieveFileStream(reportFile)){
+            if(inputStream==null)
+                throw new Throwable("Report not found");
+            final var bytes=inputStream.readAllBytes();
+            inputStream.close();
+            return bytes;
+        } finally {
+            ftpClient.completePendingCommand();
+        }
+    }
 }

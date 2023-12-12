@@ -3,9 +3,10 @@ package com.report.generator.service.impl;
 import com.report.generator.config.properties.FileSystemProperties;
 import com.report.generator.constants.ApiConstants;
 import com.report.generator.dto.JasperReportDto;
-import com.report.generator.service.DownloadReportService;
+import com.report.generator.dto.ReportDownloadRequestDTO;
 import com.report.generator.service.FTPClientService;
 import com.report.generator.service.ReportFileNameConfiguration;
+import com.report.generator.service.ReportService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,10 @@ import java.io.InputStream;
 @Service
 @EnableConfigurationProperties(FileSystemProperties.class)
 @AllArgsConstructor
-public class DownloadReportServiceImpl implements DownloadReportService {
+public class ReportServiceImpl implements ReportService {
     private final FileSystemProperties fileSystemProperties;
     private final FTPClientService ftpClientService;
+
     @Override
     public File downloadReportIntoFileSystem(final InputStream inputStream, final ReportFileNameConfiguration reportFileNameConfiguration,final JasperReportDto jasperReportDto) throws Throwable {
         final String configuredReportName= reportFileNameConfiguration.getConfiguredReportFileNameWithCustomConfiguration(jasperReportDto);
@@ -31,5 +33,10 @@ public class DownloadReportServiceImpl implements DownloadReportService {
             throw new Throwable("File copying error to FTP server");
         inputStream.close();
         return outputFile;
+    }
+
+    @Override
+    public byte[] fetchReportFromFileSystem(ReportDownloadRequestDTO reportDownloadRequestDTO) throws Throwable {
+        return ftpClientService.retrieveFileBytesFromStream(reportDownloadRequestDTO.getReportPath());
     }
 }
