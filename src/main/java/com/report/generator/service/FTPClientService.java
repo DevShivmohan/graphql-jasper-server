@@ -9,5 +9,6 @@ public interface FTPClientService {
     boolean saveFile(String remote, InputStream local) throws IOException;
     boolean makeDirectory(String pathname) throws IOException;
     FTPFile[] listFiles(String pathname) throws IOException;
+    boolean deleteFile(String pathname) throws IOException;
     byte[] retrieveFileBytesFromStream(String reportFile) throws Throwable;
 }

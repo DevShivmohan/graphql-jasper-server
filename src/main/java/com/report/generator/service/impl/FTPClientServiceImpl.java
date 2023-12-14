@@ -29,7 +29,14 @@ public class FTPClientServiceImpl implements FTPClientService {
     }
 
     @Override
+    public boolean deleteFile(String pathname) throws IOException {
+        return ftpClient.deleteFile(pathname);
+    }
+
+    @Override
     public byte[] retrieveFileBytesFromStream(String reportFile) throws Throwable {
+        if(ftpClient.getSize(reportFile)==null)
+            throw new Throwable("Report does not exists "+reportFile);
         try (final InputStream inputStream=ftpClient.retrieveFileStream(reportFile)){
             if(inputStream==null)
                 throw new Throwable("Report not found");

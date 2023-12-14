@@ -23,6 +23,8 @@ public class JasperApplication {
         Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/pdf")).forEach(System.out::println);
         Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/xlsx")).forEach(System.out::println);
         Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/html")).forEach(System.out::println);
+        System.out.println("File delete status - "+ftpClientService.deleteFile("/jasper-reports/Reports/pdf/BankAccountReportWithCustomStyle_1702034759209.pdf"));
+        Arrays.stream(ftpClientService.listFiles("/jasper-reports/Reports/pdf")).forEach(System.out::println);
     }
 
 }
