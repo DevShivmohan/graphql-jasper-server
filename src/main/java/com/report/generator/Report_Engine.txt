@@ -1,0 +1,44 @@
+title Report engine microservice sequence diagram
+actor user
+activate user
+user->Report request service:http request to generate the report
+deactivate user
+participant Report request service
+participant Validation service
+participant SMS service
+participant Roles and access management service
+participant Jasper report server
+participant NFS service
+
+Report request service->Validation service: Validate all validations
+note over Validation service #ff9999: if Validation failed \n then return back to Report request service
+Validation service-->Report request service: Request validated
+
+note right of Report request service #d5ff80:If request validation\n validated successfully\nthen proceed for user authorization validation\nelse return with error message
+
+Report request service->SMS service: Validate user authorization with SMS
+note over SMS service #ff9999:If user authorization \n validation failed \n then return back to the  \n client through Report request service
+SMS service-->Report request service:User authorization validated
+
+note right of Report request service #d5ff80: If user authorization valid then proceed\nfor validating the requested resource access \n with Roles and access management service
+
+Report request service->Roles and access management service: Validate requested resource access for that user
+note over Roles and access management service #ff9999: Check access and roles \n for that report if failed
+Roles and access management service-->Report request service: Requested resource validated
+
+note right of Report request service #d5ff80:If requested resource is valid then proceed to call the report api\n else return with error message
+
+Report request service->Jasper report server:Calling report api to generate the report of requested resource
+note over Jasper report server #ff9999: Process the report \n if not exists then return \n error message to client
+Jasper report server-->Report request service: Generated requested report
+
+note right of Report request service #d5ff80: report generated success then \n proceed to save it into NFS location else return with error message
+
+Report request service->NFS service: store the report into NFS with custom configurations.
+note over NFS service #ff9999: Save the generated report \n if not saved then return with error message
+NFS service-->Report request service: Report saved into NFS
+
+note right of Report request service #d5ff80: report saved successfully into \n NFS then extract the absolute path of the saved report and \n generate success response to thge client \n else return with error message.
+
+
+Report request service-->user:Generate response of http requests

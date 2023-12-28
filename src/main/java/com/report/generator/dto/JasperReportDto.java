@@ -6,7 +6,6 @@ import lombok.Data;
 @GraphQLType
 @Data
 public class JasperReportDto {
-    private String reportOutputFolder;
     private String fileFormat;
     private String reportUri;
     private String localeName;
